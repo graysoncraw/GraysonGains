@@ -1,0 +1,25 @@
+﻿@model GraysonGains.Models.Entities.UserPRs
+
+<h1>Edit PRs</h1>
+
+<div class="mt-3">
+    <form method="post" asp-action="EditPRsDB" asp-controller="Profile">
+        <label class="form-label">Bench Press (lbs)</label>
+        <input type="number" class="form-control" asp-for="BenchPR" />
+
+        <label class="form-label">Squat (lbs)</label>
+        <input type="number" class="form-control" asp-for="SquatPR" />
+
+        <label class="form-label">Deadlift (lbs)</label>
+        <input type="number" class="form-control" asp-for="DLPR" />
+
+        <label class="form-label">Shoulder Press (lbs)</label>
+        <input type="number" class="form-control" asp-for="SPPR" />
+
+        <button type="submit" class="btn btn-primary" onclick="saveSuccess()">Save Changes</button>
+    </form>
+</div>
+
+<script>
+    const saveSuccess = () => alert("Successfully saved changes.");
+</script>

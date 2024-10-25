@@ -1,0 +1,90 @@
+﻿@model GraysonGains.Models.Entities.UserWorkoutDays
+
+@{
+    var errorMessage = TempData["ErrorMessage"] as string;
+}
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    // Alert user if they selected duplicate days
+    <script>
+        alert('@errorMessage');
+    </script>
+}
+
+<h1>Edit Cycle</h1>
+
+<div class="mt-3">
+    <form method="post" asp-action="EditCycleDaysDB" asp-controller="Profile">
+        <label class="form-label">Bench Press</label>
+        <select class="form-control day-select" id="benchDay" asp-for="BenchDay">
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+            <option value="Saturday">Saturday</option>
+            <option value="Sunday">Sunday</option>
+        </select>
+
+        <label class="form-label">Squat</label>
+        <select class="form-control day-select" id="squatDay" asp-for="SquatDay">
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+            <option value="Saturday">Saturday</option>
+            <option value="Sunday">Sunday</option>
+        </select>
+
+        <label class="form-label">Deadlift</label>
+        <select class="form-control day-select" id="deadliftDay" asp-for="DLDay">
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+            <option value="Saturday">Saturday</option>
+            <option value="Sunday">Sunday</option>
+        </select>
+
+        <label class="form-label">Shoulder Press</label>
+        <select class="form-control day-select" id="shoulderPressDay" asp-for="SPDay">
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+            <option value="Saturday">Saturday</option>
+            <option value="Sunday">Sunday</option>
+        </select>
+
+        <label class="form-label">Cycle Start Date</label>
+        <input type="date" class="form-control" id="cycleStart" asp-for="CycleStart" required />
+
+        <button type="submit" class="btn btn-primary" onclick="saveSuccess()">Save Changes</button>
+    </form>
+</div>
+
+<script>
+    const saveSuccess = () => alert("Successfully saved changes.");
+</script>
+<script>
+    // Function to handle day selection changes
+    function handleDayChange(event) {
+        const selectedDay = event.target.value;
+        const selects = document.querySelectorAll('.day-select');
+
+        selects.forEach(select => {
+            if (select !== event.target && select.value === selectedDay) {
+                select.value = ""; // Clear the previous selection if the day is already selected
+            }
+        });
+    }
+
+    // Attach the change event listener to all day-select elements
+    document.querySelectorAll('.day-select').forEach(select => {
+        select.addEventListener('change', handleDayChange);
+    });
+</script>
