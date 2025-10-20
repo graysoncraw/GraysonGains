@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: sb-ggains
+  datasource:
+    url: jdbc:sqlite:mydb.sqlite
+    driverClassName: org.sqlite.JDBC
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.community.dialect.SQLiteDialect
