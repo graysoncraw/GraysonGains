@@ -1,5 +1,7 @@
 package com.gsc.ggains.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,9 +18,10 @@ public class WorkoutLog {
     private UUID id;
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonBackReference
     private User user;
     private String exerciseName;
-    private String exerciseWeight;
-    private String exerciseReps;
+    private double exerciseWeight;
+    private int exerciseReps;
     private Date exerciseDate;
 }

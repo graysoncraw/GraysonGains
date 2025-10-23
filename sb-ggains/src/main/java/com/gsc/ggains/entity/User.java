@@ -8,6 +8,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -36,5 +38,8 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "wdId", referencedColumnName = "id")
     @JsonManagedReference
-    private WorkoutSchedule workoutDays;
+    private WorkoutSchedule workoutSchedule;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<WorkoutLog> workoutLogs = new ArrayList<>();
 }

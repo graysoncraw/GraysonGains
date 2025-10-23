@@ -16,7 +16,7 @@ public class WorkoutSchedule {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    @OneToOne(mappedBy = "workoutDays")
+    @OneToOne(mappedBy = "workoutSchedule")
     @JsonBackReference
     private User user;
     @Enumerated(EnumType.STRING)
